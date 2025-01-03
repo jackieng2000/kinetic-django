@@ -1,0 +1,146 @@
+{% load static %}
+
+<style>
+    
+    .navbar {
+        background-color: #ffffff;
+        padding: 15px 30px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease;
+    }
+
+    .navbar.scrolled {
+        background-color: #ffffff;
+    }
+
+    .navbar-image img {
+        width: 180px;
+        height: auto;
+    }
+
+    .navbar a {
+        color: #333;
+        text-decoration: none;
+        padding: 10px 15px;
+        transition: color 0.3s ease;
+    }
+
+    .navbar a:hover {
+        color: #0b8a79;
+    }
+
+    .navbar-toggler {
+        border-color: black;
+    }
+
+    .navbar-toggler-icon {
+        width: 30px;
+        height: 30px;
+        background: none;
+        position: relative;
+    }
+
+    .navbar-toggler-icon::before,
+    .navbar-toggler-icon::after,
+    .navbar-toggler-icon div {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 2.75px;
+        background-color: black;
+        position: absolute;
+        left: 0;
+        transition: all 0.3s;
+    }
+
+    .navbar-toggler-icon::before {
+        top: 0;
+    }
+
+    .navbar-toggler-icon div {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .navbar-toggler-icon::after {
+        bottom: 0;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: block; /* Show dropdown menu on hover */
+    }
+
+    .dropdown-menu {
+        display: none; /* Hide dropdown menu by default */
+        position: absolute; /* Position it absolutely */
+        background-color: white; /* Background color for dropdown */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional shadow */
+        z-index: 1000; /* Ensure it is on top */
+    }
+
+
+    .social-icons {
+        display: flex; /* Align items in a row */
+        align-items: center; /* Center vertically */
+        margin-left: auto; /* Push to the right */
+    }
+
+    .social-logo {
+        width: 30px; /* Size of the logos */
+        height: auto; /* Maintain aspect ratio */
+        transition: transform 0.3s ease; /* Smooth transition for hover effect */
+        margin-left: 10px; /* Space between icons */
+    }
+
+    .social-logo:hover {
+        transform: scale(1.1) rotateY(10deg); /* 3D effect on hover */
+    }
+
+
+</style>
+
+<nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+        <div class="navbar-image">
+            <a href={% url "index" %}>
+                <img src={% static "img/logo2.png" %} alt="Kinetic Logo">
+            </a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon">
+                <div></div>
+            </span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav ml-auto"> <!-- Add ml-auto here -->
+                <a class="nav-item nav-link" href={% url "index" %}>首頁</a>
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        活動一覽 <i class="fas fa-chevron-right"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">領袖訓練</a>
+                        <a class="dropdown-item" href="#">團隊建立</a>
+                        <a class="dropdown-item" href="#">特殊教育</a>
+                        <a class="dropdown-item" href="#">個別訓練</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href={% url "index" %}>其他服務</a>
+                    </div>
+                </div>
+                <a class="nav-item nav-link" href={% url "FAQ" %}>過往活動</a>
+                <a class="nav-item nav-link" href={% url "about" %}>Blog</a>
+                <a class="nav-item nav-link" href={% url "contact" %}>聯絡我們</a>
+
+                <!-- Social Media Icons -->
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/kinetic_radio" target="_blank" class="nav-item nav-link">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo" class="social-logo">
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61569644221657&mibextid=ZbWKwL" target="_blank" class="nav-item nav-link">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo" class="social-logo">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
