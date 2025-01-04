@@ -113,6 +113,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="navbar-nav ml-auto"> <!-- Add ml-auto here -->
+                
                 <a class="nav-item nav-link" href={% url "index" %}>首頁</a>
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -130,6 +131,47 @@
                 <a class="nav-item nav-link" href={% url "FAQ" %}>過往活動</a>
                 <a class="nav-item nav-link" href={% url "about" %}>Blog</a>
                 <a class="nav-item nav-link" href={% url "contact" %}>聯絡我們</a>
+
+                <ul class="navbar-nav">
+                    <!-- if login then show dashboard and logout link -->
+                    {% if user.is_authenticated %}
+                    <!--dashboard link-->
+                    <li {% if 'dashboard' in request.path %} class='nav-item active' 
+                    {% else %} class='nav-item' {% endif %}>
+                    <a class="nav-link" href={% url 'dashboard' %} >Welcome {{user.username}} (dashboard)</a>
+                    </li> 
+                    <!--logout link -->
+                    <li class='nav-item'>
+                      <a href="javascript:{document.getElementById('logout').submit()}" class='nav-link'>
+                      <i class='fas fa-sign-out-alt'></i> Logout   
+                      </a>
+                      <form action="{% url 'logout' %}" method="POST" id="logout">
+                        {% csrf_token %}
+                        <input type='hidden'/>
+                      </form>
+                    </li>   
+                    {% else %}
+                    <!-- this is register li-->
+                    <li  {% if 'register' in request.path %}
+                     class="nav-item active"
+                      {% else %}
+                   class="nav-item" {% endif %} >
+                      <a class="nav-link" href={% url "register" %}>
+                        <i class="fas fa-user-plus"></i> Register</a
+                      >
+                    </li>
+                  <!-- this is login link -->
+                    <li   {% if 'login' in request.path %}
+                   class="nav-item active" 
+                    {% else %}
+                     class="nav-item " {% endif %}>
+                      <a class="nav-link" href={% url "login" %}>
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login</a
+                      >
+                    </li>
+                  {% endif %}
+                    </ul>
 
                 <!-- Social Media Icons -->
                 <div class="social-icons">

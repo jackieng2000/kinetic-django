@@ -28,8 +28,17 @@ SECRET_KEY = 'django-insecure-fy9lnzq_x^q7l8xy_zutp3bf4=wd1j&dft9!h!zsj#a(gt5cum
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+# ALLOWED_HOSTS = ['127.0.0.1']
 
+ALLOWED_HOSTS = [
+    '127.0.0.1',          # Localhost
+    'localhost',          # Localhost by name
+    '152.42.229.97',  # Your production domain
+    'www.your-production-domain.com', # WWW subdomain
+    '192.168.1.100',      # Local network IP
+    'subdomain.your-production-domain.com', # Subdomain example
+    '.example.com',       # Allow all subdomains of example.com
+]
 
 # Application definition
 
@@ -42,6 +51,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'pages.apps.PagesConfig',
+    'contact.apps.ContactConfig',
+    'accounts.apps.AccountsConfig',
+    'middleware',
+
     
 ]
 
@@ -53,6 +66,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'middleware.access_log_middleware.AccessLogMiddleware',
 ]
 
 ROOT_URLCONF = 'kinetic.urls'

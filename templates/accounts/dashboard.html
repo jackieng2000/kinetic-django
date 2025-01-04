@@ -1,0 +1,28 @@
+{% extends 'base.html' %} 
+<!-- title tab-->
+{% block title %} | Dashboard {% endblock %}
+{% block content %}
+
+{% include 'partials/_alert.html' %}
+
+<section id="showcase-inner" class="py-5 text-white">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-12">
+        <h1 class="display-4">User Dashboard (to be constructed)</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="dashboard" class="py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Welcome {{username}}</h2>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

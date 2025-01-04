@@ -1,0 +1,74 @@
+<!-- contact/templates/contact/contact.html -->
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Contact Us{% endblock %}
+{% block content %}
+
+<div class="container mt-4">
+    <div class="card shadow mx-auto" style="max-width: 600px;">
+        <div class="card-body">
+            <h5 class="card-title text-center">Contact Us</h5>
+            
+            <!-- Loader -->
+            <div class="loader" id="loader" style="display: none;"></div>
+
+            <form method="post" onsubmit="showLoader()">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="{{ form.name.id_for_label }}">Name</label>
+                    <input type="text" name="name" id="{{ form.name.id_for_label }}" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.email.id_for_label }}">Email</label>
+                    <input type="email" name="email" id="{{ form.email.id_for_label }}" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.message.id_for_label }}">Message</label>
+                    <textarea name="message" id="{{ form.message.id_for_label }}" class="form-control" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+            </form>
+
+            {% if messages %}
+                <div class="alert alert-success mt-3">
+                    <ul class="mb-0">
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Loader CSS -->
+<style>
+    .loader {
+        border: 8px solid #f3f3f3; /* Light grey */
+        border-top: 8px solid #3498db; /* Blue */
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999; /* Ensure it is on top */
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
+
+<!-- Loader JavaScript -->
+<script>
+    function showLoader() {
+        document.getElementById("loader").style.display = "block"; // Show loader
+    }
+</script>
+
+{% endblock %}
