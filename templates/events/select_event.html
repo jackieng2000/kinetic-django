@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Select Event to Update{% endblock %}
+
+{% block content %}
+
+<style>
+    body {
+        background-color: #0b8a79; /* Applies to the entire body */
+        
+    }
+
+</style>
+
+<div class="container">
+    <h1 class="mt-4">Select Event to Update</h1>
+
+    <div class="list-group">
+        {% for event in events %}
+        <a href="{% url 'update_event' event.id %}" class="list-group-item list-group-item-action">
+            {{ event.title }} - {{ event.event_date }}
+        </a>
+        {% empty %}
+        <div class="alert alert-warning">No events available for update.</div>
+        {% endfor %}
+    </div>
+
+    <br>
+    <a href="{% url 'create_event' %}" class="btn btn-primary">Create New Event</a>
+</div>
+{% endblock %}

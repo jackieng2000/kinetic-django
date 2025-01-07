@@ -5,23 +5,28 @@
 
 {% include 'partials/_alert.html' %}
 
-<section id="showcase-inner" class="py-5 text-white">
-  <div class="container">
-    <div class="row text-center">
-      <div class="col-md-12">
-        <h1 class="display-4">User Dashboard (to be constructed)</h1>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section id="dashboard" class="py-4">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h2>Welcome {{username}}</h2>
+        <h4>Welcome {{ username }}</h4>
       </div>
     </div>
+    
+    {% if user.is_staff %}  <!-- Check if the user is staff -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card text-center">
+          <div class="card-body">
+            <h5 class="card-title">For Kinetic Staff Only</h5>
+            <a href="{% url 'create_event' %}" class="btn btn-primary">Create Event</a>              <!-- Button to create event -->
+            <a href="{% url 'select_event' %}" class="btn btn-primary">Update Event</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    
   </div>
 </section>
 

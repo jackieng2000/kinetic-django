@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ event.title }}{% endblock %}
+
+{% block content %}
+
+<style>
+    body {
+        background-color: #0b8a79; /* Applies to the entire body */
+        
+    }
+
+</style>
+
+<div class="container">
+    <h1 class="mt-4">{{ event.title }}</h1>
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Main Photo</h5>
+                    <img src="{{ event.main_photo.url }}" class="img-fluid" alt="{{ event.title }}">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Description</h5>
+                    <p>{{ event.description }}</p>
+                    <p><strong>Date:</strong> {{ event.event_date }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3>Other Photos</h3>
+    <div class="row">
+        {% for photo in event.other_photos.all|dictsort:"sequence" %}
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <img src="{{ photo.photo.url }}" class="img-fluid" alt="Other Photo" style="max-height: 200px; object-fit: cover;">
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <a href="{% url 'events' %}" class="btn btn-secondary">Back to List</a>
+</div>
+{% endblock %}

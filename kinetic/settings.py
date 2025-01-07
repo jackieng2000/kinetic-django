@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'contact.apps.ContactConfig',
     'accounts.apps.AccountsConfig',
+    'events.apps.EventsConfig',
     'middleware',
 
     

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}過往活動{% endblock %}
+
+
+{% block content %}
+
+<style>
+    body {
+        background-color: #0b8a79; /* Applies to the entire body */
+    
+    }
+
+</style>
+
+<div class="container">
+    <h1>過往活動</h1>
+    <div class="row">
+        {% for event in events %}
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{ event.main_photo.url }}" class="card-img-top" alt="{{ event.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ event.title }}</h5>
+                    <a href="{% url 'event_detail' event.pk %}" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
