@@ -17,6 +17,4 @@ class OtherPhotoForm(forms.ModelForm):
         fields = ['id', 'event', 'photo', 'sequence']
 
 # Create a formset for OtherPhoto
-OtherPhotoFormSet = modelformset_factory(OtherPhoto, form=OtherPhotoForm, extra=1,can_delete=True)
-
-#fields=('photo','sequence', 'event') ,
+OtherPhotoFormSet = modelformset_factory(OtherPhoto, form=OtherPhotoForm, fields=('id', 'event','photo','sequence'), extra=1,can_delete=True)
