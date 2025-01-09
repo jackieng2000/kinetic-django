@@ -1,0 +1,14 @@
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=teclast128
+Group=www-data
+WorkingDirectory=/home/teclast128/myshop
+
+#ExecStart=/home/teclast128/.virtualenvs/myenv/bin/gunicorn --access-logfile - --workers 3 -bind 127.0.0.1:8002 myshop.wsgi:application
+ExecStart=/home/teclast128/.virtualenvs/myenv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/teclast128/myshop.sock myshop.wsgi:application
+
+[Install]
+WantedBy=multi-user.target

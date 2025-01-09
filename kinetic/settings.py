@@ -26,11 +26,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-fy9lnzq_x^q7l8xy_zutp3bf4=wd1j&dft9!h!zsj#a(gt5cum'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+
+
 DEBUG = True
 
-# ALLOWED_HOSTS = ['127.0.0.1']
+# Trust the X-Forwarded-For header from Nginx
+USE_X_FORWARDED_HOST = True
+USE_X_FORWARDED_PORT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-ALLOWED_HOSTS = [
+# Set the trusted proxies (e.g., Nginx running on localhost)
+if DEBUG:
+    ALLOWED_HOSTS = ['*']  # Allow all hosts in development
+else:
+    ALLOWED_HOSTS = [
     '127.0.0.1',          # Localhost
     'localhost',          # Localhost by name
     '152.42.229.97',  # Your production domain
@@ -38,7 +47,14 @@ ALLOWED_HOSTS = [
     '192.168.1.100',      # Local network IP
     'subdomain.your-production-domain.com', # Subdomain example
     '.example.com',       # Allow all subdomains of example.com
-]
+    ]  # Replace with your domain
+
+# Trust the X-Forwarded-For header from Nginx
+from django.conf import settings
+
+if not settings.DEBUG:
+    settings.MIDDLEWARE.insert(0, 'django.middleware.http.SetRemoteAddrFromForwardedFor')
+
 
 # Application definition
 
@@ -71,6 +87,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'kinetic.urls'
+
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://127.0.0.1:8001',  
+    'http://127.0.0.1:8001/admin', 
+]
 
 TEMPLATES = [
     {

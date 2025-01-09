@@ -1,0 +1,14 @@
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=teclast128
+Group=www-data
+WorkingDirectory=/home/teclast128/kineticdev
+
+ExecStart=/home/teclast128/.virtualenvs/kenv/bin/gunicorn --access-logfile - --workers 3 -bind 127.0.0.1:8000 project2.wsgi:application
+# ExecStart=/home/teclast128/.virtualenvs/kenv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/teclast128/kinetic.sock kinetic.wsgi:application
+
+[Install]
+WantedBy=multi-user.target

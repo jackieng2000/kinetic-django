@@ -1,4 +1,3 @@
-# middleware.py
 from django.utils.timezone import now
 from django.contrib.auth.models import User
 from .models import PageAccessLog
@@ -11,7 +10,19 @@ class AccessLogMiddleware:
         response = self.get_response(request)
         
         if request.method == 'GET':  # Log only GET requests
-            ip_address = request.META.get('REMOTE_ADDR')
+            # Get the client's IP address from the X-Forwarded-For header
+            # There need to have related setup in nginx 
+
+            x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+            if x_forwarded_for:
+                ip_address = x_forwarded_for.split(',')[0]  # Get the first IP in the list
+            else:
+                ip_address = request.META.get('REMOTE_ADDR', '0.0.0.0')  # Fallback to REMOTE_ADDR or a placeholder
+
+            #ip_address = '0.0.0.0'
+            #print('x_forwarded_for: ', x_forwarded_for)
+            #print('ip_address: ', ip_address)
+            
             path = request.path
             user = request.user if request.user.is_authenticated else None
             
@@ -19,7 +30,7 @@ class AccessLogMiddleware:
                 user=user,
                 ip_address=ip_address,
                 path=path,
-                accessed_at=now()
-            )
+                accessed_at=now())
+            
         
         return response
