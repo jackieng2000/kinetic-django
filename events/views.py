@@ -56,13 +56,14 @@ def create_event(request):
                     #print('form.is_valid(): ', form.is_valid())
                     print('form.errors: ', form.errors) 
 
-
-            return redirect('events')
+        """ 
+            return redirect('select_event')
+        """
         else:
             # If the form is invalid, you can print the errors for debugging
             print(event_form.errors)  # To see errors in the console
             print(formset.errors)      # To see formset errors in the console
-        """    
+        """   
     else:
         event_form = EventForm()
         #formset = OtherPhotoFormSet(queryset=OtherPhoto.objects.none())
@@ -73,7 +74,7 @@ def create_event(request):
     })
 
 def select_event(request):
-    events = Event.objects.all()
+    events = Event.objects.all().order_by('-event_date')
     return render(request, 'events/select_event.html', {'events': events})
 
 def update_event(request, pk):
