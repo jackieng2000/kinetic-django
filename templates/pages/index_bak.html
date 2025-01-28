@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>流動教室KineticTraining</title>
+    <link rel="icon" href="image/logo1.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .navbar {
+            background-color: #ffffff;
+            padding: 15px 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background-color: #ffffff;
+        }
+
+        .navbar-image img {
+            width: 180px;
+            height: auto;
+        }
+
+        .navbar a {
+            color: #333;
+            text-decoration: none;
+            padding: 10px 15px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: #0b8a79;
+        }
+
+        .navbar-toggler {
+            border-color: black;
+        }
+
+        .navbar-toggler-icon {
+            width: 30px;
+            height: 30px;
+            background: none;
+            position: relative;
+        }
+
+        .navbar-toggler-icon::before,
+        .navbar-toggler-icon::after,
+        .navbar-toggler-icon div {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 2.75px;
+            background-color: black;
+            position: absolute;
+            left: 0;
+            transition: all 0.3s;
+        }
+
+        .navbar-toggler-icon::before {
+            top: 0;
+        }
+
+        .navbar-toggler-icon div {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .navbar-toggler-icon::after {
+            bottom: 0;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block; /* Show dropdown menu on hover */
+        }
+
+        .dropdown-menu {
+            display: none; /* Hide dropdown menu by default */
+            position: absolute; /* Position it absolutely */
+            background-color: white; /* Background color for dropdown */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional shadow */
+            z-index: 1000; /* Ensure it is on top */
+        }
+
+        footer {
+            padding: 20px 0;
+            background-color: #ffffff; 
+        }
+
+        footer p {
+            text-align: center;
+            margin: 0;
+            color: #555;
+        }
+
+        .quote {
+            text-align: center;
+            padding: 227px 0;
+            font-size: 36px;
+            color: #ffffff;
+            background-color: #0b8a79;
+        }
+
+        .name {
+            background-color: #f8f9fa;
+            padding: 40px 20px;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            color: #333;
+            font-size: 20px;
+        }
+
+        .name h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .name p {
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+
+        .intro {
+            background-color: #f0f8ff; /* Light background color */
+            padding: 50px 20px; /* Ample padding */
+            border-radius: 10px; /* Slightly rounded corners */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            margin: 20px; /* Separation from other elements */
+            color: #333; /* Dark text color */
+            text-align: justify; /* Justified text for better readability */
+        }
+
+        .intro h2 {
+            font-size: 36px; /* Larger heading */
+            color: #0b8a79; /* Accent color for headings */
+            margin-bottom: 20px; /* Space below heading */
+        }
+
+        .intro p {
+            font-size: 18px; /* Slightly larger font size */
+            line-height: 1.8; /* Increased line height for readability */
+            margin-bottom: 15px; /* Space between paragraphs */
+        }
+
+        .service-intro h2 {
+            text-align: center;
+            margin: 40px;
+            font-size: 50px;
+        }
+
+        .service-item.career-planning {
+            position: relative; /* 使伪元素定位相对于此元素 */
+            color: white; /* 文本颜色 */
+            padding: 80px; /* 内边距 */
+            border-radius: 16px; /* 圆角 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 阴影 */
+            overflow: hidden;
+        }
+
+        .service-item.career-planning::before {
+            content: ''; /* 必须添加内容 */
+            position: absolute; /* 绝对定位 */
+            top: 0; /* 顶部对齐 */
+            left: 0; /* 左侧对齐 */
+            right: 0; /* 右侧对齐 */
+            bottom: 0; /* 底部对齐 */
+            background-image: url('image/career-planning.jpg'); /* 背景图片 */
+            background-size: cover; /* 覆盖整个区域 */
+            background-position: center; /* 中心对齐 */
+            opacity: 0.5; /* 调整透明度，范围 0 (完全透明) 到 1 (完全不透明) */
+            z-index: 0; /* 确保在文本后面 */
+            border-radius: 16px;
+        }
+
+        .service-item.career-planning h4,
+        .service-item.career-planning p {
+            position: relative; /* 确保文本在伪元素上方 */
+            z-index: 1; /* 确保文本在伪元素上方 */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* 文本阴影，增强可读性 */
+        }
+
+        .service-item.positive-thinking {
+            position: relative; /* 使伪元素定位相对于此元素 */
+            color: white; /* 文本颜色 */
+            padding: 80px; /* 内边距 */
+            border-radius: 16px; /* 圆角 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 阴影 */
+            overflow: hidden;
+        }
+
+        .service-item.positive-thinking::before {
+            content: ''; /* 必须添加内容 */
+            position: absolute; /* 绝对定位 */
+            top: 0; /* 顶部对齐 */
+            left: 0; /* 左侧对齐 */
+            right: 0; /* 右侧对齐 */
+            bottom: 0; /* 底部对齐 */
+            background-image: url('image/positive-thinking.jpg'); /* 背景图片 */
+            background-size: cover; /* 覆盖整个区域 */
+            background-position: center; /* 中心对齐 */
+            opacity: 0.5; /* 调整透明度，范围 0 (完全透明) 到 1 (完全不透明) */
+            z-index: 0; /* 确保在文本后面 */
+            border-radius: 16px;
+        }
+
+        .service-item.positive-thinking h4,
+        .service-item.positive-thinking p {
+            position: relative; /* 确保文本在伪元素上方 */
+            z-index: 1; /* 确保文本在伪元素上方 */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* 文本阴影，增强可读性 */
+        }
+
+        .service-item.special-learning {
+            position: relative; /* 使伪元素定位相对于此元素 */
+            color: white; /* 文本颜色 */
+            padding: 80px; /* 内边距 */
+            border-radius: 16px; /* 圆角 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 阴影 */
+            overflow: hidden;
+        }
+
+        .service-item.special-learning::before {
+            content: ''; /* 必须添加内容 */
+            position: absolute; /* 绝对定位 */
+            top: 0; /* 顶部对齐 */
+            left: 0; /* 左侧对齐 */
+            right: 0; /* 右侧对齐 */
+            bottom: 0; /* 底部对齐 */
+            background-image: url('image/special-learning.jpg'); /* 背景图片 */
+            background-size: cover; /* 覆盖整个区域 */
+            background-position: center; /* 中心对齐 */
+            opacity: 0.5; /* 调整透明度，范围 0 (完全透明) 到 1 (完全不透明) */
+            z-index: 0; /* 确保在文本后面 */
+            border-radius: 16px;
+        }
+
+        .service-item.special-learning h4,
+        .service-item.special-learning p {
+            position: relative; /* 确保文本在伪元素上方 */
+            z-index: 1; /* 确保文本在伪元素上方 */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* 文本阴影，增强可读性 */
+        }
+
+        .service-item.person-development {
+            position: relative; /* 使伪元素定位相对于此元素 */
+            color: white; /* 文本颜色 */
+            padding: 80px; /* 内边距 */
+            border-radius: 16px; /* 圆角 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 阴影 */
+            overflow: hidden;
+        }
+
+        .service-item.person-development::before {
+            content: ''; /* 必须添加内容 */
+            position: absolute; /* 绝对定位 */
+            top: 0; /* 顶部对齐 */
+            left: 0; /* 左侧对齐 */
+            right: 0; /* 右侧对齐 */
+            bottom: 0; /* 底部对齐 */
+            background-image: url('image/person-development.jpg'); /* 背景图片 */
+            background-size: cover; /* 覆盖整个区域 */
+            background-position: center; /* 中心对齐 */
+            opacity: 0.5; /* 调整透明度，范围 0 (完全透明) 到 1 (完全不透明) */
+            z-index: 0; /* 确保在文本后面 */
+            border-radius: 16px;
+        }
+
+        .service-item.person-development h4,
+        .service-item.person-development p {
+            position: relative; /* 确保文本在伪元素上方 */
+            z-index: 1; /* 确保文本在伪元素上方 */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* 文本阴影，增强可读性 */
+        }
+
+        .service-item {
+            background-color: #0b8a79;
+            padding: 80px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 50px;
+            text-align: center;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+        }
+
+        .service-item:hover {
+            transform: translateY(-2px) scale(1); /* Move up and scale slightly */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8); /* Increase shadow on hover */
+        }
+
+        .service-item h4 {
+            color: #ffffff;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .service-item p {
+            color: #ffffff;
+        }
+
+        @media (max-width: 76px) {
+            .navbar-nav {
+                display: none;
+            }
+            .navbar-toggler {
+                display: block;
+            }
+        }
+
+        .whatsapp-logo,
+        .social-icons img {
+            transition: transform 0.3s ease; /* Smooth transition for all logos */
+        }
+
+        .whatsapp-logo:hover,
+        .social-icons img:hover {
+            transform: scale(1.1) rotateY(10deg); /* 3D effect on hover */
+        }
+
+        .whatsapp-logo {
+            position: fixed; /* Make it fixed */
+            bottom: 20px; /* Position from the bottom */
+            right: 20px; /* Position from the right */
+            width: 60px; /* Size of the logo */
+            height: 60px; /* Size of the logo */
+            z-index: 1000; /* Keep it on top of other elements */
+        }
+
+        .social-icons {
+            display: flex; /* Align items in a row */
+            align-items: center; /* Center vertically */
+            margin-left: auto; /* Push to the right */
+        }
+
+        .social-logo {
+            width: 30px; /* Size of the logos */
+            height: auto; /* Maintain aspect ratio */
+            transition: transform 0.3s ease; /* Smooth transition for hover effect */
+            margin-left: 10px; /* Space between icons */
+        }
+
+        .social-logo:hover {
+            transform: scale(1.1) rotateY(10deg); /* 3D effect on hover */
+        }
+
+        .partner {
+            background-color: #0b8a79; /* Background color */
+            padding: 100px; /* Padding around the text */
+            text-align: center; /* Center align the text */
+        }
+
+        .partner h1 {
+            font-size: 5rem; /* Increase font size */
+            color: white; /* Text color */
+            margin: 0; /* Remove default margin */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional text shadow for depth */
+        }
+
+        .partner-image {
+            display: flex; /* Optional: for centering the image */
+            justify-content: center; /* Optional: center the image horizontally */
+            padding: 20px; /* Increase space around the image */
+            background-color: #ffffff; /* Optional: background color for visibility */
+        }
+
+        .partner-image img {
+            max-width: 100%; /* Ensure the image is responsive */
+            height: auto; /* Maintain aspect ratio */
+            display: block; /* Prevent bottom spacing issues */
+            margin: 0; /* Reset any default margin */
+        }
+
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <div class="navbar-image">
+                <a href="index.html">
+                    <img src="image/logo2.png" alt="Kinetic Logo">
+                </a>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon">
+                    <div></div>
+                </span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav ml-auto">
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="index.html" id="homeDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            首頁 <i class="fas fa-chevron-right"></i>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="homeDropdown">
+                            <a class="dropdown-item" href="valuesEducation.html">價值觀教育</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            活動一覽 <i class="fas fa-chevron-right"></i>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">領袖訓練</a>
+                            <a class="dropdown-item" href="#">團隊建立</a>
+                            <a class="dropdown-item" href="#">特殊教育</a>
+                            <a class="dropdown-item" href="#">個別訓練</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="contact.html">其他服務</a>
+                        </div>
+                    </div>
+                    <a class="nav-item nav-link" href="#">過往活動</a>
+                    <a class="nav-item nav-link" href="#">Blog</a>
+                    <a class="nav-item nav-link" href="contact.html">聯絡我們</a>
+                    <!-- Social Media Icons -->
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/kinetic_radio" target="_blank" class="nav-item nav-link">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo" class="social-logo">
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61569644221657&mibextid=ZbWKwL" target="_blank" class="nav-item nav-link">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo" class="social-logo">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="quote">
+        人的發展及成長不應受任何形式的限制
+    </div>
+
+    <div class="name">
+        <h2>流動教室</h2>
+        <h3>KINETIC TRAINING</h3>
+        <p>名字寓意服務使用者的學習充滿動力，</p>
+        <p>而且不受任何限制。</p>
+        <p>例如：體驗式學習、歷奇、藝術等...</p>
+    </div>
+
+    <div class="intro">
+        <h2>體驗式學習</h2>
+        <font face="Times New Roman"><p>早在二十世紀初，美國教育家約翰‧杜威 John Dewey 提出「從動手中學習」Learning by Doing
+            「給學生一些事情做，而非給一些東西他們去學。這做事的過程本身需要思考，而學習自然會隨之而生。」</p>
+        <p>有別於傳統的認知式學習 Cognitive Learning，體驗式學習着重如何應用知識，
+            美國心理學家卡爾‧羅哲斯 Carl Rogers 認為，這種學習方法可滿足個人需要和需求，推動個人成長，並且是教育的本義。
+            「（教育）的目的是要喚醒學生對社會問題的關注，同時讓他們積極找出解決這些問題的方法。」</p>
+        <p>根據大衛‧庫伯 David Kolb 的理論，學習者可從任何一個階段開展其體驗學習的過程，但需要完成4個階段
+            經驗學習圈 Experiential learning cycle：
+            <br>1.具體經驗 Concrete Experience：強調個人參與及情感投入 learning by feeling
+            <br>2.反思 Reflection：透過觀察周遭環境、事物的變化，啟發思考 learning by watching and listening
+            <br>3.抽象概念化 Abstract Conceptualisation：從邏輯分析與概念來學習
+            先對情境完全瞭解之後，才做出理性的行動 learning by thinking
+            <br>4.主動實驗 Active Experimentation：強調以實際操作來進行學習 learning by doing</p></font>
+    </div>
+
+    <div class="service-intro container">
+        <h2>我們的服務</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="service-item career-planning">
+                    <h4>生涯規劃</h4>
+                    <p>協助青少年自我認識，於學習階段逐步規劃職志發展，實踐個人目標</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="service-item special-learning">
+                    <h4>特殊學習需要</h4>
+                    <p>向特殊學習需要之學生提供支援，協助他們充份發展潛能</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="service-item positive-thinking">
+                    <h4>正向思維</h4>
+                    <p>提升個人以至團體抗逆力，強化青少年面對挑戰時的能力</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="service-item person-development">
+                    <h4>全人發展</h4>
+                    <p>滿足身心靈發展需要，讓青少年以至成人能夠得以持續發展，助人自助</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://wa.me/+85293793473" class="whatsapp-logo" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo">
+    </a>
+
+    <div class="partner">
+        <h1>合作伙伴</h1>
+    </div>
+
+    <div class="partner-image">
+        <img src="image/Mechanism.avif" alt="Mechanism logo">
+    </div>
+
+    <footer>
+        <div class="contact">
+            電郵:kinetictra@gmail.com<br>
+            電話:+852 9379 3473
+        </div>
+        <p>&copy; 2025 by KineticTraining</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        window.onscroll = function() {
+            const navbar = document.querySelector('.navbar');
+            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        };
+    </script>
+</body>
+</html>

@@ -114,7 +114,18 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="navbar-nav ml-auto"> <!-- Add ml-auto here -->
                 
-                <a class="nav-item nav-link" href={% url "index" %}>首頁</a>
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href={% url 'index' %} id="homeDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        首頁 <i class="fas fa-chevron-right"></i>
+                    </a>
+                
+                    <div class="dropdown-menu" aria-labelledby="homeDropdown">
+                        <a class="dropdown-item" href="{% url "values_education" %}">價值觀教育</a>
+                        <a class="dropdown-item" href="#">Page 1</a>
+                    </div>
+                </div>
+
+
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         活動一覽 <i class="fas fa-chevron-right"></i>

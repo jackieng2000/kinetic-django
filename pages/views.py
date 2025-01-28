@@ -14,10 +14,15 @@ def index(request):
     context = {}
     return render(request, 'pages/index.html')
 
+
 def contact(request):
     
     context ={}
     return render(request, 'pages/contact.html')
+def values_education(request):
+    
+    context ={}
+    return render(request, 'pages/values_education.html')
 
 def about(request):
     
