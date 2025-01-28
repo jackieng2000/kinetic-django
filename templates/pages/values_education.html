@@ -3,8 +3,83 @@
 {% block title %}Start{% endblock %}
 {% block content %}
 
-<h1>    values education  </h1>
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>價值觀教育</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .name {
+            font-size: 50px;
+            margin-bottom: 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 25px;
+            text-align: left; 
+        }
+        h2 {
+            text-align: center;
+            font-size: 30px;
+            margin-top: 30px;
+        }
+        .values-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 50px;
+        }
+        .value-item {
+            flex: 1 1 30%; /* 3 items per row */
+            text-align: center;
+            margin: 10px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
 
+    <div class="name">
+        <h1>價值觀教育</h1>
+    </div>
+    
+    <p>
+        價值觀教育是全人教育的重要元素，通過各學習領域／學科課程的學與教，以及其他相關的學習經歷，培育學生正確的價值觀和態度；
+        幫助他們在成長的不同階段，當遇上難題的時候，懂得辨識當中涉及的價值觀，作出客觀分析和合理的判斷，並付諸實踐，方能面對未來生活上種種的挑戰。
+    </p>
 
+    <p>學校應以培育學生正確的價值觀和態度為方向，運用生活化的題材，整合包括品德及倫理教育、公民教育、國民教育（包括《憲法》、《基本法》及國家安全教育）、
+        禁毒教育、生命教育、性教育、媒體及資訊素養教育、可持續發展教育、法律框架下的人權教育等不同跨學科價值觀教育範疇的學習活動，為學生提供全面的學習經歷，
+        並加強彼此之間的連繫，促進學生的全人發展。
+    </p>
+
+    <h2>培育學生十二種首要的價值觀和態度</h2>
+
+    <div class="values-container">
+        <div class="value-item">堅毅</div>
+        <div class="value-item">尊重他人</div>
+        <div class="value-item">責任感</div>
+        <div class="value-item">國民身份認同</div>
+        <div class="value-item">承擔精神</div>
+        <div class="value-item">誠信</div>
+        <div class="value-item">仁愛</div>
+        <div class="value-item">守法</div>
+        <div class="value-item">同理心</div>
+        <div class="value-item">勤勞</div>
+        <div class="value-item">團結</div>
+        <div class="value-item">孝親</div>
+    </div>
+
+</body>
+</html>
 
 {% endblock %}

@@ -7,39 +7,45 @@
         padding: 15px 30px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         transition: background-color 0.3s ease;
+        display: flex;
+        align-items: center; /* Align items vertically */
     }
-
+    
     .navbar.scrolled {
         background-color: #ffffff;
     }
-
+    
+    .navbar-image {
+        margin-left: 80px; /* Pushes navbar items to the left */
+    }
+    
     .navbar-image img {
         width: 180px;
         height: auto;
     }
-
+    
     .navbar a {
         color: #333;
         text-decoration: none;
         padding: 10px 15px;
         transition: color 0.3s ease;
     }
-
+    
     .navbar a:hover {
         color: #0b8a79;
     }
-
+    
     .navbar-toggler {
         border-color: black;
     }
-
+    
     .navbar-toggler-icon {
         width: 30px;
         height: 30px;
         background: none;
         position: relative;
     }
-
+    
     .navbar-toggler-icon::before,
     .navbar-toggler-icon::after,
     .navbar-toggler-icon div {
@@ -52,16 +58,16 @@
         left: 0;
         transition: all 0.3s;
     }
-
+    
     .navbar-toggler-icon::before {
         top: 0;
     }
-
+    
     .navbar-toggler-icon div {
         top: 50%;
         transform: translateY(-50%);
     }
-
+    
     .navbar-toggler-icon::after {
         bottom: 0;
     }
@@ -113,7 +119,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="navbar-nav ml-auto"> <!-- Add ml-auto here -->
-                
+
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href={% url 'index' %} id="homeDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         首頁 <i class="fas fa-chevron-right"></i>
@@ -121,7 +127,6 @@
                 
                     <div class="dropdown-menu" aria-labelledby="homeDropdown">
                         <a class="dropdown-item" href="{% url "values_education" %}">價值觀教育</a>
-                        <a class="dropdown-item" href="#">Page 1</a>
                     </div>
                 </div>
 
@@ -145,6 +150,8 @@
 
                 <ul class="navbar-nav">
                     <!-- if login then show dashboard and logout link -->
+
+                    <!------------->
                     {% if user.is_authenticated %}
                     <!--dashboard link-->
                     <li {% if 'dashboard' in request.path %} class='nav-item active' 
@@ -162,15 +169,6 @@
                       </form>
                     </li>   
                     {% else %}
-                    <!-- this is register li-->
-                    <li  {% if 'register' in request.path %}
-                     class="nav-item active"
-                      {% else %}
-                   class="nav-item" {% endif %} >
-                      <a class="nav-link" href={% url "register" %}>
-                        <i class="fas fa-user-plus"></i> Register</a
-                      >
-                    </li>
                   <!-- this is login link -->
                     <li   {% if 'login' in request.path %}
                    class="nav-item active" 
