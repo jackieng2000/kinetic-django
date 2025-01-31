@@ -2,17 +2,8 @@
 {% load static %}
 {% block title %}Start{% endblock %}
 {% block content %}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>流動教室KineticTraining</title>
-    <link rel="icon" href="img/logo1.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
+<style>
+        body-class {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
@@ -24,11 +15,11 @@
             text-align: center;
         }
 
-        p {
+        p-class {
             line-height: 1.6;
             margin-bottom: 15px;
             font-size: 25px;
-            text-align: left; 
+            text-align: left;
         }
 
         h2 {
@@ -83,14 +74,6 @@
             align-items: center; /* Center align items horizontally */
             margin-top: 20px; /* Space above the container */
         }
-        
-
-        @media (max-width: 768px) {
-            .rectangle-container {
-                max-width: 100%; /* Allow full width on smaller screens */
-                padding: 20px; /* Reduce padding for smaller screens */
-            }
-        }
 
         .rectangle-container {
             display: flex;
@@ -106,12 +89,12 @@
             width: 100%; /* Make all containers take full width */
             max-width: 1000px; /* Set a maximum width for consistency */
         }
-        
+
         .rectangle-content {
             display: flex; /* Use flexbox to align title, image, and text */
             width: 100%; /* Full width of the container */
         }
-        
+
         .rectangle-left {
             display: flex;
             flex-direction: column; /* Stack title and image vertically */
@@ -119,39 +102,49 @@
             margin-right: 18px; /* Space between left and right sections */
             margin-left: 40px; /* Move left section more to the right */
         }
-        
+
         .rectangle-right {
             flex-grow: 1; /* Allow this section to take remaining space */
             margin-left: 120px; /* Increased space to push the text more to the right */
         }
-        
+
         .rectangle-right p {
             font-size: 22px; /* Decreased font size */
             line-height: 1.4; /* Adjust line height for better readability */
         }
-        
+
         .rectangle-container img {
             width: 150px; /* Keep the image width unchanged */
             height: 130px; /* Keep the image height unchanged */
             margin: 10px 0; /* Space above and below the image */
         }
-    </style>
-</head>
+
+        @media (max-width: 768px) {
+            .rectangle-container {
+                max-width: 100%; /* Allow full width on smaller screens */
+                padding: 20px; /* Reduce padding for smaller screens */
+            }
+        }
+</style>
 <body>
+<div class="body-class">
+    <br>
+    <br>
 
     <div class="name">
         <h1>價值觀教育</h1>
     </div>
-    
-    <p>
+
+    <div class="p-class">
         價值觀教育是全人教育的重要元素，通過各學習領域／學科課程的學與教，以及其他相關的學習經歷，培育學生正確的價值觀和態度；
         幫助他們在成長的不同階段，當遇上難題的時候，懂得辨識當中涉及的價值觀，作出客觀分析和合理的判斷，並付諸實踐，方能面對未來生活上種種的挑戰。
-    </p>
+    </div>
 
-    <p>學校應以培育學生正確的價值觀和態度為方向，運用生活化的題材，整合包括品德及倫理教育、公民教育、國民教育（包括《憲法》、《基本法》及國家安全教育）、
+    <div class="p-class">
+        學校應以培育學生正確的價值觀和態度為方向，運用生活化的題材，整合包括品德及倫理教育、公民教育、國民教育（包括《憲法》、《基本法》及國家安全教育）、
         禁毒教育、生命教育、性教育、媒體及資訊素養教育、可持續發展教育、法律框架下的人權教育等不同跨學科價值觀教育範疇的學習活動，為學生提供全面的學習經歷，
         並加強彼此之間的連繫，促進學生的全人發展。
-    </p>
+    </div>
 
     <h2>培育學生十二種首要的價值觀和態度</h2>
 
@@ -372,7 +365,6 @@
             });
         });
     </script>
+</div>
 </body>
-</html>
-
 {% endblock %}

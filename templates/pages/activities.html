@@ -1,0 +1,209 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Activities{% endblock %}
+{% block content %}
+
+
+    <style>
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Questionnaire-specific styles */
+        .questionnaire-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h4-class {
+            color: #0b8a79;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        h5-class {
+            color: #555;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .question {
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .question:hover {
+            background-color: #e0f2f1;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #0b8a79;
+            font-size: 18px;
+        }
+
+        .options {
+            display: flex;
+            gap: 20px;
+        }
+
+        .options label {
+            font-weight: normal;
+            color: #555;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            max-width: 200px;
+            margin: 30px auto 0;
+            background-color: #0b8a79;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #096b5f;
+        }
+    </style>
+
+
+<body>
+    <!-- Questionnaire Section -->
+    <div class="questionnaire-container">
+        <div class="h4-class">發掘學生潛能：一起培育未來領袖</div>
+        
+        <div class="h5-class">本公司將提供首次免費諮詢，協助貴校全面評估學生發展需求。
+            請在下列選項O旁邊標記✓號以評估學生所具備及缺乏的特質。
+            完成後，請聯絡本公司。</div>
+
+        <!-- Questionnaire Form -->
+        <form method="post" action="{% url 'submit_questionnaire' %}">
+            {% csrf_token %} <!-- CSRF token for security -->
+
+            <!-- Question 1 -->
+            <div class="question">
+                <label>1. 面對問題時，學生能否堅持解決到底？</label>
+                <div class="options">
+                    <label><input type="radio" id="q1_true" name="q1" value="true" required> 是</label>
+                    <label><input type="radio" id="q1_false" name="q1" value="false" required> 否</label>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question">
+                <label>2. 學生願意投入額外時間，直至掌握學習內容嗎？</label>
+                <div class="options">
+                    <label><input type="radio" id="q2_true" name="q2" value="true" required> 是</label>
+                    <label><input type="radio" id="q2_false" name="q2" value="false" required> 否</label>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question">
+                <label>3. 小組討論時，學生能接納和尊重不同意見嗎？</label>
+                <div class="options">
+                    <label><input type="radio" id="q3_true" name="q3" value="true" required> 是</label>
+                    <label><input type="radio" id="q3_false" name="q3" value="false" required> 否</label>
+                </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question">
+                <label>4. 同學能齊心協力，共同完成班本事務嗎？</label>
+                <div class="options">
+                    <label><input type="radio" id="q4_true" name="q4" value="true" required> 是</label>
+                    <label><input type="radio" id="q4_false" name="q4" value="false" required> 否</label>
+                </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question">
+                <label>5. 參與活動時，學生願意全力以赴嗎？</label>
+                <div class="options">
+                    <label><input type="radio" id="q5_true" name="q5" value="true" required> 是</label>
+                    <label><input type="radio" id="q5_false" name="q5" value="false" required> 否</label>
+                </div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question">
+                <label>6. 參與團體活動時，學生會盡責完成分內工作嗎？</label>
+                <div class="options">
+                    <label><input type="radio" id="q6_true" name="q6" value="true" required> 是</label>
+                    <label><input type="radio" id="q6_false" name="q6" value="false" required> 否</label>
+                </div>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question">
+                <label>7. 學生犯錯時，願意承認錯誤並改正嗎？</label>
+                <div class="options">
+                    <label><input type="radio" id="q7_true" name="q7" value="true" required> 是</label>
+                    <label><input type="radio" id="q7_false" name="q7" value="false" required> 否</label>
+                </div>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question">
+                <label>8. 同學遇到困難時，學生願意主動協助嗎？</label>
+                <div class="options">
+                    <label><input type="radio" id="q8_true" name="q8" value="true" required> 是</label>
+                    <label><input type="radio" id="q8_false" name="q8" value="false" required> 否</label>
+                </div>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question">
+                <label>9. 學生願意協助新同學適應校園生活嗎？</label>
+                <div class="options">
+                    <label><input type="radio" id="q9_true" name="q9" value="true" required> 是</label>
+                    <label><input type="radio" id="q9_false" name="q9" value="false" required> 否</label>
+                </div>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question">
+                <label>10. 活動不順利時，學生願意主動提出改善方案？</label>
+                <div class="options">
+                    <label><input type="radio" id="q10_true" name="q10" value="true" required> 是</label>
+                    <label><input type="radio" id="q10_false" name="q10" value="false" required> 否</label>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit">提交</button>
+        </form>
+    </div>
+</body>
+
+{% endblock %}

@@ -1,4 +1,3 @@
-<!-- contact/templates/contact/contact.html -->
 {% extends "base.html" %}
 {% load static %}
 {% block title %}Contact Us{% endblock %}
@@ -7,28 +6,42 @@
 <div class="container mt-4">
     <div class="card shadow mx-auto" style="max-width: 600px;">
         <div class="card-body">
-            <h5 class="card-title text-center">Contact Us</h5>
+            <h5 class="card-title text-center">聯絡我們</h5>
             
             <!-- Loader -->
             <div class="loader" id="loader" style="display: none;"></div>
 
             <form method="post" onsubmit="showLoader()">
                 {% csrf_token %}
+                <!-- Name Field -->
                 <div class="form-group">
-                    <label for="{{ form.name.id_for_label }}">Name</label>
+                    <label for="{{ form.name.id_for_label }}">名稱</label>
                     <input type="text" name="name" id="{{ form.name.id_for_label }}" class="form-control" required>
                 </div>
+
+                <!-- Email Field -->
                 <div class="form-group">
-                    <label for="{{ form.email.id_for_label }}">Email</label>
+                    <label for="{{ form.email.id_for_label }}">電子郵件</label>
                     <input type="email" name="email" id="{{ form.email.id_for_label }}" class="form-control" required>
                 </div>
+
+                <!-- Subject Field -->
                 <div class="form-group">
-                    <label for="{{ form.message.id_for_label }}">Message</label>
+                    <label for="{{ form.subject.id_for_label }}">主旨</label>
+                    <input type="text" name="subject" id="{{ form.subject.id_for_label }}" class="form-control" required>
+                </div>
+
+                <!-- Message Field -->
+                <div class="form-group">
+                    <label for="{{ form.message.id_for_label }}">訊息</label>
                     <textarea name="message" id="{{ form.message.id_for_label }}" class="form-control" rows="4" required></textarea>
                 </div>
+
+                <!-- Submit Button -->
                 <button type="submit" class="btn btn-primary btn-block">Send Message</button>
             </form>
 
+            <!-- Success Messages -->
             {% if messages %}
                 <div class="alert alert-success mt-3">
                     <ul class="mb-0">
