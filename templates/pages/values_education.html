@@ -4,37 +4,39 @@
 {% block content %}
 
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>價值觀教育</title>
+    <title>流動教室KineticTraining</title>
+    <link rel="icon" href="img/logo1.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
         }
-        
+
         .name {
             font-size: 50px;
             margin-bottom: 20px;
             text-align: center;
         }
-        
+
         p {
             line-height: 1.6;
             margin-bottom: 15px;
             font-size: 25px;
             text-align: left; 
         }
-        
+
         h2 {
             text-align: center;
             font-size: 30px;
             margin-top: 30px;
         }
-        
+
         .values-container {
             display: flex;
             flex-wrap: wrap;
@@ -44,7 +46,7 @@
             margin-left: auto; /* Centering */
             margin-right: auto; /* Centering */
         }
-        
+
         .value-item {
             flex: 1 1 30%; /* 3 items per row */
             display: flex; /* Use flexbox for layout */
@@ -55,36 +57,82 @@
             border: 2px solid transparent; /* Transparent border to maintain layout */
             border-radius: 15px; /* Rounded corners */
             transition: border-color 0.3s; /* Smooth border color transition */
+            text-decoration: none; /* Remove underline */
+            color: black; /* Set text color to black */
         }
-        
+
         .value-item:hover {
             border-color: rgb(255, 187, 0); /* Change border color on hover */
-            background-color: rgb(254, 254, 254); /* Optional: Light background on hover */
+            background-color: rgb(255, 255, 255); /* Optional: Light background on hover */
         }
-        
+
+        .value-item a {
+            color: black; /* Set text color to black for the anchor tag */
+            text-decoration: none; /* Remove underline from the anchor tag */
+        }
+
         .value-item img {
             width: 200px; /* Adjust the width to make the image bigger */
             height: 180px; /* Adjust the height accordingly */
             margin-right: 15px; /* Space between image and text */
         }
+
+        .rectangle-container-wrapper {
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center align items horizontally */
+            margin-top: 20px; /* Space above the container */
+        }
         
+
+        @media (max-width: 768px) {
+            .rectangle-container {
+                max-width: 100%; /* Allow full width on smaller screens */
+                padding: 20px; /* Reduce padding for smaller screens */
+            }
+        }
+
         .rectangle-container {
             display: flex;
-            flex-direction: column; /* Stack title, image, and text vertically */
+            flex-direction: column; /* Stack items vertically */
             align-items: center; /* Center align items */
             justify-content: center; /* Center align items */
             border: 2px solid transparent; /* Transparent border to maintain layout */
             border-radius: 15px; /* Rounded corners */
-            padding: 10px; /* Reduced space inside the rectangle */
+            padding: 40px; /* Adjusted space inside the rectangle */
             margin: 10px; /* Space around the rectangle */
             transition: border-color 0.3s, box-shadow 0.3s; /* Smooth border color and shadow transition */
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow effect */
-            width: 1000px; /* Set a fixed width for the container */
+            width: 100%; /* Make all containers take full width */
+            max-width: 1000px; /* Set a maximum width for consistency */
+        }
+        
+        .rectangle-content {
+            display: flex; /* Use flexbox to align title, image, and text */
+            width: 100%; /* Full width of the container */
+        }
+        
+        .rectangle-left {
+            display: flex;
+            flex-direction: column; /* Stack title and image vertically */
+            align-items: center; /* Center align title and image */
+            margin-right: 18px; /* Space between left and right sections */
+            margin-left: 40px; /* Move left section more to the right */
+        }
+        
+        .rectangle-right {
+            flex-grow: 1; /* Allow this section to take remaining space */
+            margin-left: 120px; /* Increased space to push the text more to the right */
+        }
+        
+        .rectangle-right p {
+            font-size: 22px; /* Decreased font size */
+            line-height: 1.4; /* Adjust line height for better readability */
         }
         
         .rectangle-container img {
             width: 150px; /* Keep the image width unchanged */
-            height: 150px; /* Keep the image height unchanged */
+            height: 130px; /* Keep the image height unchanged */
             margin: 10px 0; /* Space above and below the image */
         }
     </style>
@@ -109,118 +157,221 @@
 
     <div class="values-container">
         <div class="value-item">
-            <img src="{% static 'img/堅毅.png' %}" alt="堅毅">
-            堅毅
+            <a href="#value-1">
+                <img src="{% static 'img/堅毅.png' %}" alt="堅毅">堅毅
+            </a>
         </div>
         <div class="value-item">
-            <img src="{% static 'img/尊重他人.png' %}" alt="尊重他人">
-            尊重他人
+            <a href="#value-2">
+                <img src="{% static 'img/尊重他人.png' %}" alt="尊重他人">尊重他人
+            </a>
         </div>
         <div class="value-item">
-            <img src="{% static 'img/責任感.png' %}" alt="責任感">
-            責任感
+            <a href="#value-3">
+                <img src="{% static 'img/責任感.png' %}" alt="責任感">責任感
+            </a>
         </div>
         <div class="value-item">
-            <img src="{% static 'img/國民身份認同.png' %}" alt="國民身份認同">
-            國民身份認同
+            <a href="#value-4">
+                <img src="{% static 'img/國民身份認同.png' %}" alt="國民身份認同">國民身份認同
+            </a>
         </div>
         <div class="value-item">
-            <img src="{% static 'img/承擔精神.png' %}" alt="承擔精神">
-            承擔精神
+            <a href="#value-5">
+                <img src="{% static 'img/承擔精神.png' %}" alt="承擔精神">承擔精神
+            </a>
         </div>
         <div class="value-item">
-            <img src="{% static 'img/誠信.png' %}" alt="誠信">
-            誠信
+            <a href="#value-6">
+                <img src="{% static 'img/誠信.png' %}" alt="誠信">誠信
+            </a>
         </div>
         <div class="value-item">
-            <img src="{% static 'img/仁愛.png' %}" alt="仁愛">
-            仁愛
+            <a href="#value-7">
+                <img src="{% static 'img/仁愛.png' %}" alt="仁愛">仁愛
+            </a>
         </div>
         <div class="value-item">
-            <img src="{% static 'img/守法.png' %}" alt="守法">
-            守法
+            <a href="#value-8">
+                <img src="{% static 'img/守法.png' %}" alt="守法">守法
+            </a>
         </div>
         <div class="value-item">
-            <img src="{% static 'img/同理心.png' %}" alt="同理心">
-            同理心
+            <a href="#value-9">
+                <img src="{% static 'img/同理心.png' %}" alt="同理心">同理心
+            </a>
         </div>
         <div class="value-item">
-            <img src="{% static 'img/勤勞.png' %}" alt="勤勞">
-            勤勞
+            <a href="#value-10">
+                <img src="{% static 'img/勤勞.png' %}" alt="勤勞">勤勞
+            </a>
         </div>
         <div class="value-item">
-            <img src="{% static 'img/團結.png' %}" alt="團結">
-            團結
+            <a href="#value-11">
+                <img src="{% static 'img/團結.png' %}" alt="團結">團結
+            </a>
         </div>
         <div class="value-item">
-            <img src="{% static 'img/孝親.png' %}" alt="孝親">
-            孝親
+            <a href="#value-12">
+                <img src="{% static 'img/孝親.png' %}" alt="孝親">孝親
+            </a>
         </div>
     </div>
 
     <!-- Rectangle Containers -->
-    <h2>價值觀詳情</h2>
-    <div class="rectangle-container">
-        <h3>1. 堅毅</h3>
-        <p>這是描述堅毅的文字。它代表著在困難時不放棄的精神。</p>
-        <img src="{% static 'img/堅毅.png' %}" alt="堅毅">
-    </div>
-    <div class="rectangle-container">
-        <h3>2. 尊重他人</h3>
-        <p>這是描述尊重他人的文字。它強調了理解和包容的重要性。</p>
-        <img src="{% static 'img/尊重他人.png' %}" alt="尊重他人">
-    </div>
-    <div class="rectangle-container">
-        <h3>3. 責任感</h3>
-        <p>這是描述責任感的文字。它意味著對自己的行為負責。</p>
-        <img src="{% static 'img/責任感.png' %}" alt="責任感">
-    </div>
-    <div class="rectangle-container">
-        <h3>4. 國民身份認同</h3>
-        <p>這是描述國民身份認同的文字。它代表對國家的認同感。</p>
-        <img src="{% static 'img/國民身份認同.png' %}" alt="國民身份認同">
-    </div>
-    <div class="rectangle-container">
-        <h3>5. 承擔精神</h3>
-        <p>這是描述承擔精神的文字。它強調承擔責任的重要性。</p>
-        <img src="{% static 'img/承擔精神.png' %}" alt="承擔精神">
-    </div>
-    <div class="rectangle-container">
-        <h3>6. 誠信</h3>
-        <p>這是描述誠信的文字。它代表著對真實和誠實的堅守。</p>
-        <img src="{% static 'img/誠信.png' %}" alt="誠信">
-    </div>
-    <div class="rectangle-container">
-        <h3>7. 仁愛</h3>
-        <p>這是描述仁愛的文字。它強調關懷他人的精神。</p>
-        <img src="{% static 'img/仁愛.png' %}" alt="仁愛">
-    </div>
-    <div class="rectangle-container">
-        <h3>8. 守法</h3>
-        <p>這是描述守法的文字。它代表著遵守法律的重要性。</p>
-        <img src="{% static 'img/守法.png' %}" alt="守法">
-    </div>
-    <div class="rectangle-container">
-        <h3>9. 同理心</h3>
-        <p>這是描述同理心的文字。它強調理解他人感受的能力。</p>
-        <img src="{% static 'img/同理心.png' %}" alt="同理心">
-    </div>
-    <div class="rectangle-container">
-        <h3>10. 勤勞</h3>
-        <p>這是描述勤勞的文字。它代表著努力工作的重要性。</p>
-        <img src="{% static 'img/勤勞.png' %}" alt="勤勞">
-    </div>
-    <div class="rectangle-container">
-        <h3>11. 團結</h3>
-        <p>這是描述團結的文字。它強調團結一致的力量。</p>
-        <img src="{% static 'img/團結.png' %}" alt="團結">
-    </div>
-    <div class="rectangle-container">
-        <h3>12. 孝親</h3>
-        <p>這是描述孝親的文字。它代表對長輩的尊重和關愛。</p>
-        <img src="{% static 'img/孝親.png' %}" alt="孝親">
+    <h2>價值觀和態度詳情</h2>
+    <div class="rectangle-container-wrapper">
+        <div class="rectangle-container" id="value-1">
+            <div class="rectangle-content">
+                <div class="rectangle-left">
+                    <h3>1. 堅毅</h3>
+                    <img src="{% static 'img/堅毅.png' %}" alt="堅毅">
+                </div>
+                <div class="rectangle-right">
+                    <p>堅毅是一種面對困難時不輕言放棄的精神。它鼓勵學生在學習和生活中克服挑戰，持之以恆，努力達成目標。</p>
+                </div>
+            </div>
+        </div>
+        <div class="rectangle-container" id="value-2">
+            <div class="rectangle-content">
+                <div class="rectangle-left">
+                    <h3>2. 尊重他人</h3>
+                    <img src="{% static 'img/尊重他人.png' %}" alt="尊重他人">
+                </div>
+                <div class="rectangle-right">
+                    <p>尊重他人是理解和接受不同觀點與文化的重要基礎。這種價值觀促進和諧的社會關係，讓學生學會欣賞他人的獨特性。</p>
+                </div>
+            </div>
+        </div>
+        <div class="rectangle-container" id="value-3">
+            <div class="rectangle-content">
+                <div class="rectangle-left">
+                    <h3>3. 責任感</h3>
+                    <img src="{% static 'img/責任感.png' %}" alt="責任感">
+                </div>
+                <div class="rectangle-right">
+                    <p>責任感讓學生明白自己對行為和決策的後果，培養自我管理能力，並促進對家庭、社會和環境的責任意識。</p>
+                </div>
+            </div>
+        </div>
+        <div class="rectangle-container" id="value-4">
+            <div class="rectangle-content">
+                <div class="rectangle-left">
+                    <h3>4. 國民身份認同</h3>
+                    <img src="{% static 'img/國民身份認同.png' %}" alt="國民身份認同">
+                </div>
+                <div class="rectangle-right">
+                    <p>國民身份認同強調對國家的歸屬感和自豪感。這種價值觀幫助學生理解自己的文化背景，並培養對國家的熱愛。</p>
+                </div>
+            </div>
+        </div>
+        <div class="rectangle-container" id="value-5">
+            <div class="rectangle-content">
+                <div class="rectangle-left">
+                    <h3>5. 承擔精神</h3>
+                    <img src="{% static 'img/承擔精神.png' %}" alt="承擔精神">
+                </div>
+                <div class="rectangle-right">
+                    <p>承擔精神是指在面對挑戰時，勇於擔當責任和義務。這種精神能幫助學生在團體中發揮更大的作用，並增強合作意識。</p>
+                </div>
+            </div>
+        </div>
+        <div class="rectangle-container" id="value-6">
+            <div class="rectangle-content">
+                <div class="rectangle-left">
+                    <h3>6. 誠信</h3>
+                    <img src="{% static 'img/誠信.png' %}" alt="誠信">
+                </div>
+                <div class="rectangle-right">
+                    <p>誠信是建立信任的基石。它鼓勵學生在與他人互動時保持真誠，並在生活中遵循道德標準。</p>
+                </div>
+            </div>
+        </div>
+        <div class="rectangle-container" id="value-7">
+            <div class="rectangle-content">
+                <div class="rectangle-left">
+                    <h3>7. 仁愛</h3>
+                    <img src="{% static 'img/仁愛.png' %}" alt="仁愛">
+                </div>
+                <div class="rectangle-right">
+                    <p>仁愛是一種關懷他人、同情弱者的價值觀。它促進社會的和諧，並鼓勵學生主動關心周圍的人，積極參與社會服務。</p>
+                </div>
+            </div>
+        </div>
+        <div class="rectangle-container" id="value-8">
+            <div class="rectangle-content">
+                <div class="rectangle-left">
+                    <h3>8. 守法</h3>
+                    <img src="{% static 'img/守法.png' %}" alt="守法">
+                </div>
+                <div class="rectangle-right">
+                    <p>守法強調遵守法律和社會規範的重要性。這種價值觀幫助學生理解法律的意義，並促進社會的穩定與秩序。</p>
+                </div>
+            </div>
+        </div>
+        <div class="rectangle-container" id="value-9">
+            <div class="rectangle-content">
+                <div class="rectangle-left">
+                    <h3>9. 同理心</h3>
+                    <img src="{% static 'img/同理心.png' %}" alt="同理心">
+                </div>
+                <div class="rectangle-right">
+                    <p>同理心使學生能夠理解他人的感受和需求，促進良好的人際關係，並培養關懷社會的意識。</p>
+                </div>
+            </div>
+        </div>
+        <div class="rectangle-container" id="value-10">
+            <div class="rectangle-content">
+                <div class="rectangle-left">
+                    <h3>10. 勤勞</h3>
+                    <img src="{% static 'img/勤勞.png' %}" alt="勤勞">
+                </div>
+                <div class="rectangle-right">
+                    <p>勤勞是堅持努力工作和學習的態度。它鼓勵學生通過不懈的努力來實現個人目標，並重視成就的價值。</p>
+                </div>
+            </div>
+        </div>
+        <div class="rectangle-container" id="value-11">
+            <div class="rectangle-content">
+                <div class="rectangle-left">
+                    <h3>11. 團結</h3>
+                    <img src="{% static 'img/團結.png' %}" alt="團結">
+                </div>
+                <div class="rectangle-right">
+                    <p>團結強調集體合作的力量。這種價值觀讓學生明白，團隊合作能夠克服更多的困難，達到更大的成就。</p>
+                </div>
+            </div>
+        </div>
+        <div class="rectangle-container" id="value-12">
+            <div class="rectangle-content">
+                <div class="rectangle-left">
+                    <h3>12. 孝親</h3>
+                    <img src="{% static 'img/孝親.png' %}" alt="孝親">
+                </div>
+                <div class="rectangle-right">
+                    <p>孝親是對父母及長輩的尊重與關懷。它培養學生珍惜家庭關係，並理解孝道的重要性。</p>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <script>
+        document.querySelectorAll('.value-item a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const elementRect = targetElement.getBoundingClientRect();
+                    const offset = (window.innerHeight - elementRect.height) / 2; // Center the element vertically
+                    window.scrollTo({
+                        top: window.scrollY + elementRect.top - offset,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
 
