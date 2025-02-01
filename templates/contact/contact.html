@@ -3,7 +3,7 @@
 {% block title %}Contact Us{% endblock %}
 {% block content %}
 
-<div class="container mt-4">
+<div class="container mt-4" style="margin-bottom: 50px;"> <!-- Add margin-bottom here -->
     <div class="card shadow mx-auto" style="max-width: 600px;">
         <div class="card-body">
             <h5 class="card-title text-center">聯絡我們</h5>
@@ -57,9 +57,65 @@
 
 <!-- Loader CSS -->
 <style>
+    /* Background photo for the entire page */
+    /* Body Styles */
+    body {
+        background-image: url('{% static "img/contactLogo.png" %}'); /* Add your image path */
+        background-size: cover; /* Ensure the image covers the page */
+        background-position: center; /* Center the image */
+        background-attachment: fixed; /* Fix the background while scrolling */
+        min-height: 100vh; /* Ensure the background covers the full viewport height */
+        display: flex; /* Use flexbox for layout */
+        flex-direction: column; /* Stack children vertically */
+    }
+
+    .content {
+        flex: 1; /* Allow content to grow, pushing footer down */
+        display: flex;
+        align-items: center; /* Center content vertically */
+        justify-content: center; /* Center content horizontally */
+    }
+
+    /* Overlay for the entire page */
+    body::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1; /* Ensure it is behind the content */
+    }
+
+    /* Card styles */
+    .card {
+        background-color: transparent; /* Make the card transparent */
+        border: none; /* Remove card border */
+        box-shadow: none; /* Remove card shadow */
+    }
+
+    .card-body {
+        background-color: rgba(255, 255, 255, 0.9); /* Slightly opaque white background for the form */
+        border-radius: 10px; /* Rounded corners */
+        padding: 20px; /* Add padding */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    }
+
+    /* Change the button color */
+    .btn-primary {
+        background-color: #0b8a79; /* Green color */
+        border-color: #0b8a79; /* Match border color */
+    }
+
+    .btn-primary:hover {
+        background-color: #096b5f; /* Darker green on hover */
+        border-color: #096b5f; /* Match border color on hover */
+    }
+
+    /* Loader CSS */
     .loader {
         border: 8px solid #f3f3f3; /* Light grey */
-        border-top: 8px solid #3498db; /* Blue */
+        border-top: 8px solidrgb(242, 203, 84); /* Blue */
         border-radius: 50%;
         width: 50px;
         height: 50px;

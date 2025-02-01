@@ -1,8 +1,8 @@
 {% extends "base.html" %}
+{% load multiply_filters %}
 {% load static %}
 {% block title %}Activities{% endblock %}
 {% block content %}
-
 
     <style>
         /* Global styles */
@@ -10,8 +10,6 @@
             font-family: Arial, sans-serif;
             background-color: #f9f9f9;
             color: #333;
-            margin: 0;
-            padding: 0;
         }
 
         /* Questionnaire-specific styles */
@@ -24,14 +22,14 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        h4-class {
+        .h4-class {
             color: #0b8a79;
             text-align: center;
             margin-bottom: 20px;
             font-size: 24px;
         }
 
-        h5-class {
+        .h5-class {
             color: #555;
             text-align: center;
             margin-bottom: 30px;
@@ -76,7 +74,7 @@
             cursor: pointer;
         }
 
-        button {
+        .submit-button {
             display: block;
             width: 100%;
             max-width: 200px;
@@ -91,23 +89,70 @@
             transition: background-color 0.3s ease;
         }
 
-        button:hover {
+        .submit-button:hover {
             background-color: #096b5f;
+        }
+
+        /* SVG Visualization Styles */
+        .svg-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 600px;
+            background-color: white; /* Solid white background */
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        svg {
+            width: 500px;
+            height: 500px;
+            filter: drop-shadow(0 0 10px rgba(0,0,0,0.1));
+        }
+
+        .axis-label {
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            font-size: 14px;
+            fill: #3498db;
+            font-weight: bold;
+        }
+
+        .scale-label {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            fill: #7f8c8d;
+        }
+
+        .polygon {
+            fill: rgba(52, 152, 219, 0.2);
+            stroke: #3498db;
+            stroke-width: 2;
+        }
+
+        .axis {
+            stroke: #3498db;
+            stroke-width: 1.5;
+        }
+
+        .grid {
+            stroke: rgba(52, 152, 219, 0.3);
+            stroke-width: 1;
+            stroke-dasharray: 2,2;
         }
     </style>
 
 
-<body>
+    <body>
     <!-- Questionnaire Section -->
     <div class="questionnaire-container">
         <div class="h4-class">發掘學生潛能：一起培育未來領袖</div>
         
         <div class="h5-class">本公司將提供首次免費諮詢，協助貴校全面評估學生發展需求。
-            請在下列選項O旁邊標記✓號以評估學生所具備及缺乏的特質。
+            請在下列選項答是或否以評估學生所具備及缺乏的特質。
             完成後，請聯絡本公司。</div>
 
         <!-- Questionnaire Form -->
-        <form method="post" action="{% url 'submit_questionnaire' %}">
+        <form method="post" action="{% url 'submit_questionnaire' %}" id="questionnaire-form">
             {% csrf_token %} <!-- CSRF token for security -->
 
             <!-- Question 1 -->
@@ -201,9 +246,82 @@
             </div>
 
             <!-- Submit Button -->
-            <button type="submit">提交</button>
+            <button class="submit-button" type="submit">提交</button>
         </form>
     </div>
+
+    <!-- SVG Visualization (Displayed after submission) -->
+    {% if submitted %}
+        <div class="svg-container" id="svg-visualization">
+            <svg viewBox="0 0 500 500">
+                <g transform="translate(250,250)">
+                    <!-- Grid lines -->
+                    <!-- Level 6 (outer) -->
+                    <polygon points="0,-200 173.2,-100 173.2,100 0,200 -173.2,100 -173.2,-100" 
+                             class="grid" fill="none"/>
+                    <!-- Level 5 -->
+                    <polygon points="0,-166.7 144.3,-83.3 144.3,83.3 0,166.7 -144.3,83.3 -144.3,-83.3" 
+                             class="grid" fill="none"/>
+                    <!-- Level 4 -->
+                    <polygon points="0,-133.3 115.5,-66.7 115.5,66.7 0,133.3 -115.5,66.7 -115.5,-66.7" 
+                             class="grid" fill="none"/>
+                    <!-- Level 3 -->
+                    <polygon points="0,-100 86.6,-50 86.6,50 0,100 -86.6,50 -86.6,-50" 
+                             class="grid" fill="none"/>
+                    <!-- Level 2 -->
+                    <polygon points="0,-66.7 57.7,-33.3 57.7,33.3 0,66.7 -57.7,33.3 -57.7,-33.3" 
+                             class="grid" fill="none"/>
+                    <!-- Level 1 -->
+                    <polygon points="0,-33.3 28.9,-16.7 28.9,16.7 0,33.3 -28.9,16.7 -28.9,-16.7" 
+                             class="grid" fill="none"/>
+                    
+                    <!-- Axis lines -->
+                    <line x1="0" y1="-200" x2="0" y2="200" class="axis"/>
+                    <line x1="173.2" y1="-100" x2="-173.2" y2="100" class="axis"/>
+                    <line x1="173.2" y1="100" x2="-173.2" y2="-100" class="axis"/>
+                    
+                    <!-- Labels -->
+                    <text x="0" y="-220" text-anchor="middle" class="axis-label">學習態度</text>
+                    <text x="190" y="-110" text-anchor="start" class="axis-label">團隊合作</text>
+                    <text x="190" y="110" text-anchor="start" class="axis-label">領導才能</text>
+                    <text x="0" y="235" text-anchor="middle" class="axis-label">品格修養</text>
+                    <text x="-190" y="110" text-anchor="end" class="axis-label">同理心</text>
+                    <text x="-178" y="-110" text-anchor="end" class="axis-label">責任與孝道</text>
+                    
+                    <!-- Scale numbers -->
+                    <text x="-15" y="-200" class="scale-label">6</text>
+                    <text x="-15" y="-166.7" class="scale-label">5</text>
+                    <text x="-15" y="-133.3" class="scale-label">4</text>
+                    <text x="-15" y="-100" class="scale-label">3</text>
+                    <text x="-15" y="-66.7" class="scale-label">2</text>
+                    <text x="-15" y="-33.3" class="scale-label">1</text>
+
+                    <!-- Dynamic Polygon based on scores -->
+                    <polygon class="polygon" points="
+    {{ scores.learning_attitude|multiply:0}},{{ scores.learning_attitude|multiply:-33.3}}
+    {{ scores.teamwork|multiply:28.9 }},{{ scores.teamwork|multiply:-16.7 }}
+    {{ scores.leadership|multiply:28.9 }},{{ scores.leadership|multiply:16.7 }}
+    {{ scores.character|multiply:0}},{{ scores.character|multiply:33.3}}
+    {{ scores.empathy|multiply:-28.9 }},{{ scores.empathy|multiply:16.7 }}
+    {{ scores.responsibility|multiply:-28.9 }},{{ scores.responsibility|multiply:-16.7 }}
+" />
+                    
+                </g>
+            </svg>
+        </div>
+    {% endif %}
+
+    <!-- JavaScript to scroll to SVG after submission -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Check if the SVG visualization is present
+            const svgVisualization = document.getElementById("svg-visualization");
+            if (svgVisualization) {
+                // Scroll to the SVG visualization
+                svgVisualization.scrollIntoView({ behavior: "smooth" });
+            }
+        });
+    </script>
 </body>
 
 {% endblock %}

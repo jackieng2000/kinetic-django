@@ -1,61 +1,73 @@
+<style>
+    /* Footer Styles */
+    #main-footer {
+        background-color: #f8f9fa; /* Footer background color */
+        padding: 20px 0; /* Add padding for top and bottom */
+        position: relative; /* Ensure it can be positioned relative to other elements */
+    }
+
+    .footer-contact {
+        font-size: 1rem; /* Set a fixed font size */
+        margin: 0; /* Remove default margin */
+        padding: 0; /* Remove default padding */
+        text-decoration: none; /* Remove underline from links */
+        color: inherit; /* Inherit text color */
+    }
+
+    .footer-contact a {
+        font-size: 1rem; /* Ensure links have the same font size */
+        text-decoration: none; /* Remove underline from links */
+        color: inherit; /* Inherit text color */
+    }
+
+    .footer-content {
+        display: flex;
+        flex-direction: column; /* Stack items vertically */
+        align-items: flex-start; /* Align items to the left */
+        max-width: 1200px; /* Limit max width */
+        margin: 0 auto; /* Center the footer content */
+    }
+
+    .copyright {
+        text-align: center; /* Center the copyright text */
+        width: 100%; /* Take full width */
+        margin-top: 10px; /* Space above copyright */
+    }
+
+    .whatsapp-logo {
+        position: fixed; /* Make it fixed */
+        bottom: 20px; /* Position from the bottom */
+        right: 20px; /* Position from the right */
+        width: 60px; /* Size of the logo */
+        height: 60px; /* Size of the logo */
+        z-index: 1000; /* Keep it on top of other elements */
+    }
+
+    .whatsapp-logo:hover {
+        transform: scale(1.1) rotateY(10deg); /* 3D effect on hover */
+    }
+</style>
+
 <!-- Footer -->
-
-<style>
-    
-    .whatsapp-logo:hover,
-        .social-icons img:hover {
-            transform: scale(1.1) rotateY(10deg); /* 3D effect on hover */
-        }
-
-        .whatsapp-logo {
-            position: fixed; /* Make it fixed */
-            bottom: 20px; /* Position from the bottom */
-            right: 20px; /* Position from the right */
-            width: 60px; /* Size of the logo */
-            height: 60px; /* Size of the logo */
-            z-index: 1000; /* Keep it on top of other elements */
-        }
-</style>
-
-<a href="https://wa.me/+85293793473" class="whatsapp-logo" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo">
-</a>
-
-<style>
-
-/* Standardize font size for email and phone number */
-.footer-contact {
-    font-size: 1rem; /* Set a fixed font size */
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
-}
-
-.footer-contact a {
-    font-size: 1rem; /* Ensure links have the same font size */
-    text-decoration: none; /* Remove underline from links */
-    color: inherit; /* Inherit text color */
-}
-
-</style>
-
-
-
-
-<footer id="main-footer" class="py-4 bg-white">
-    <div class="container-fluid"> <!-- Use container-fluid for full-width layout -->
-        <div class="d-flex justify-content-between align-items-center"> <!-- Flexbox for alignment -->
+<footer id="main-footer">
+    <div class="container-fluid">
+        <div class="footer-content">
             <!-- Contact Information (Left-Aligned) -->
             <div class="contact">
-                <h5 class="footer-contact"><!-- Added a class for styling -->
+                <h5 class="footer-contact">
                     電郵: <a href="mailto:kinetictra@gmail.com" class="text-dark">kinetictra@gmail.com</a><br>
                     電話: <a href="tel:+85293793473" class="text-dark">+852 9379 3473</a>
                 </h5>
             </div>
 
             <!-- Copyright Information (Centered) -->
-            <div class="copyright text-center flex-grow-1"> <!-- flex-grow-1 to center copyright -->
+            <div class="copyright">
                 <h6>&copy; <span class="year">2025</span> KineticTraining. All rights reserved.</h6>
             </div>
         </div>
     </div>
 </footer>
+
+<a href="https://wa.me/+85293793473" class="whatsapp-logo" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo">
+</a>

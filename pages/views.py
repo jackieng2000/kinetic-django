@@ -40,15 +40,63 @@ def FAQ(request):
     context ={}
     return render(request, 'pages/FAQ.html')
 
-
 def submit_questionnaire(request):
     if request.method == 'POST':
-        # Process form data
-        q1 = request.POST.get('q1')
-        q2 = request.POST.get('q2')
-        q3 = request.POST.get('q3')
-        # Add more fields as needed
-        print(f"Q1: {q1}, Q2: {q2}, Q3: {q3}")  # Example processing
-        return HttpResponse("Thank you for completing the questionnaire!")
-    return redirect('activities')  # Redirect if not a POST request
+        # Initialize scores for each category
+        scores = {
+            'learning_attitude': 0,  # 學習態度
+            'teamwork': 0,           # 團隊合作
+            'leadership': 0,         # 領導才能
+            'character': 0,          # 品格修養
+            'empathy': 0,            # 同理心
+            'responsibility': 0,     # 責任與孝道
+        }
 
+        # Process each question and update scores
+        if request.POST.get('q1') == 'true':
+            scores['learning_attitude'] += 3
+        if request.POST.get('q2') == 'true':
+            scores['learning_attitude'] += 3
+
+        if request.POST.get('q3') == 'true':
+            scores['teamwork'] += 3
+        if request.POST.get('q4') == 'true':
+            scores['teamwork'] += 3
+
+        if request.POST.get('q5') == 'true':
+            scores['leadership'] += 3
+        if request.POST.get('q6') == 'true':
+            scores['leadership'] += 3
+
+        if request.POST.get('q7') == 'true':
+            scores['character'] += 3
+        if request.POST.get('q8') == 'true':
+            scores['character'] += 3
+
+        if request.POST.get('q9') == 'true':
+            scores['empathy'] += 3
+        if request.POST.get('q10') == 'true':
+            scores['empathy'] += 3
+
+        # Responsibility (責任與孝道) remains 0 as per requirements
+
+        calculated_scores = {
+        'learning_attitude': scores['learning_attitude'],
+        'teamwork': scores['teamwork'],
+        'leadership': scores['leadership'],
+        'character': scores['character'],
+        'empathy': scores['empathy'],
+        'responsibility': scores['responsibility'],
+       
+    }
+        print(calculated_scores)
+        context = {
+            'submitted': True,
+            'scores': calculated_scores,
+        }
+
+        # Render the template with the scores
+        return render(request, 'pages/activities.html', context)
+    
+    # Render the template with the form for GET requests
+    return render(request, 'pages/activities.html', {'submitted': False})
