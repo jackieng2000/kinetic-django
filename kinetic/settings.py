@@ -70,6 +70,7 @@ INSTALLED_APPS = [
     'contact.apps.ContactConfig',
     'accounts.apps.AccountsConfig',
     'events.apps.EventsConfig',
+    'blog',
     'middleware',
 
     

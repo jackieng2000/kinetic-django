@@ -49,7 +49,7 @@ def submit_questionnaire(request):
             'leadership': 0,         # 領導才能
             'character': 0,          # 品格修養
             'empathy': 0,            # 同理心
-            'responsibility': 0,     # 責任與孝道
+            'responsibility': 0,     # 責任
         }
 
         # Process each question and update scores
@@ -69,14 +69,14 @@ def submit_questionnaire(request):
             scores['leadership'] += 3
 
         if request.POST.get('q7') == 'true':
-            scores['character'] += 3
+            scores['character'] += 6
         if request.POST.get('q8') == 'true':
-            scores['character'] += 3
+            scores['empathy'] += 3
 
         if request.POST.get('q9') == 'true':
             scores['empathy'] += 3
         if request.POST.get('q10') == 'true':
-            scores['empathy'] += 3
+            scores['responsibility'] += 6
 
         # Responsibility (責任與孝道) remains 0 as per requirements
 

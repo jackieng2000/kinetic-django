@@ -8,7 +8,7 @@
         /* Global styles */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            background-color:rgb(254, 237, 201);
             color: #333;
         }
 
@@ -124,8 +124,8 @@
         }
 
         .polygon {
-            fill: rgba(52, 152, 219, 0.2);
-            stroke: #3498db;
+            fill: rgba(255, 187, 0, 0.2);
+            stroke: rgb(255, 187, 0);
             stroke-width: 2;
         }
 
@@ -135,7 +135,7 @@
         }
 
         .grid {
-            stroke: rgba(52, 152, 219, 0.3);
+            stroke: rgb(255, 187, 0);
             stroke-width: 1;
             stroke-dasharray: 2,2;
         }
@@ -143,6 +143,7 @@
 
 
     <body>
+    <div class="fade-in">    
     <!-- Questionnaire Section -->
     <div class="questionnaire-container">
         <div class="h4-class">發掘學生潛能：一起培育未來領袖</div>
@@ -286,7 +287,7 @@
                     <text x="190" y="110" text-anchor="start" class="axis-label">領導才能</text>
                     <text x="0" y="235" text-anchor="middle" class="axis-label">品格修養</text>
                     <text x="-190" y="110" text-anchor="end" class="axis-label">同理心</text>
-                    <text x="-178" y="-110" text-anchor="end" class="axis-label">責任與孝道</text>
+                    <text x="-178" y="-110" text-anchor="end" class="axis-label">責任</text>
                     
                     <!-- Scale numbers -->
                     <text x="-15" y="-200" class="scale-label">6</text>
@@ -322,6 +323,7 @@
             }
         });
     </script>
+</div>
 </body>
 
 {% endblock %}

@@ -17,6 +17,19 @@
 <link rel="stylesheet" href={% static "css/lightbox.min.css" %} />
 
 <title>Kinetic{% block title%}{% endblock %}</title>
+
+  <style>
+    .fade-in {
+      opacity: 0; /* Start invisible */
+      transform: translateY(20px); /* Slightly move down */
+      transition: opacity 0.5s ease, transform 0.5s ease; /* Transition for smooth effect */
+  }
+  
+    .fade-in.visible {
+        opacity: 1; /* Fully visible */
+        transform: translateY(0); /* Move back to original position */
+    }
+  </style>
   </head>
   <body> 
     
@@ -28,6 +41,15 @@
     <script src={% static "js/bootstrap.bundle.min.js" %}></script>
     <script src={% static "js/main.js" %}></script>
     <script src={% static "js/lightbox.min.js" %}></script>
+    <script>
+      // JavaScript to add the 'visible' class to items on page load
+      document.addEventListener("DOMContentLoaded", function() {
+          const fadeInElements = document.querySelectorAll('.fade-in');
+          fadeInElements.forEach(el => {
+              el.classList.add('visible');
+          });
+      });
+    </script>
   
   </body>
 
