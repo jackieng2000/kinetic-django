@@ -10,10 +10,39 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
-
 import os
 from pathlib import Path
 from django.contrib.messages import constants as messages
+
+
+# Application definition
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.messages',
+    'django.contrib.sites',
+    'django.contrib.staticfiles',
+    'django.contrib.humanize',
+    'django.contrib.sessions',
+    'django.contrib.sitemaps',
+    'pages.apps.PagesConfig',
+    'contact.apps.ContactConfig',
+    'accounts.apps.AccountsConfig',
+    'events.apps.EventsConfig',
+    'blog',
+    'middleware',
+#    'robots'
+
+    
+]
+
+#from django.contrib.sites.models import Site  # Add this import at the top
+
+from dotenv import load_dotenv
+load_dotenv()  # Loads variables from .env file
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -46,7 +75,7 @@ else:
     'www.your-production-domain.com', # WWW subdomain
     '192.168.1.100',      # Local network IP
     'subdomain.your-production-domain.com', # Subdomain example
-    '.example.com',       # Allow all subdomains of example.com
+    'jackieng.hk',       # Allow all subdomains of example.com
     ]  # Replace with your domain
 
 # Trust the X-Forwarded-For header from Nginx
@@ -56,25 +85,6 @@ if not settings.DEBUG:
     settings.MIDDLEWARE.insert(0, 'django.middleware.http.SetRemoteAddrFromForwardedFor')
 
 
-# Application definition
-
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django.contrib.humanize',
-    'pages.apps.PagesConfig',
-    'contact.apps.ContactConfig',
-    'accounts.apps.AccountsConfig',
-    'events.apps.EventsConfig',
-    'blog',
-    'middleware',
-
-    
-]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -89,6 +99,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'kinetic.urls'
 
+SITE_ID = 1     # in Admin, update the Site to domain name e.g. localhost, kinetic.hk 
 
 CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1:8001',  
@@ -117,6 +128,8 @@ WSGI_APPLICATION = 'kinetic.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -127,6 +140,31 @@ DATABASES = {
 
     }
 }
+"""
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
+
+    }
+}
+
+
+# Domain settings
+DOMAIN = os.environ.get('DOMAIN', 'localhost')
+SITE_URL = f'http://{DOMAIN}'
+# Robots/sitemap settings
+ROBOTS_SITEMAP_URLS = [
+    f'{SITE_URL}/sitemap.xml',
+]
+
+ROBOTS_CACHE_TIMEOUT = 60*60*24  # Cache for 24 hours
+# domain determined by SITE_ID
+ROBOTS_USE_SCHEME_IN_HOST = True  # Use https:// in URLs
 
 
 # Password validation

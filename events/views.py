@@ -161,3 +161,17 @@ def event_list(request):
 def event_detail(request, pk):
     event = get_object_or_404(Event, pk=pk)
     return render(request, 'events/event_detail.html', {'event': event})
+
+
+# Sitemap
+from django.views.generic import DetailView
+from .models import Event
+class EventDetailView(DetailView):
+    model = Event
+    template_name = 'events/event_detail_view.html'  # Create this template
+    context_object_name = 'event'
+    
+class OtherPhotoDetailView(DetailView):
+    model = OtherPhoto
+    template_name = 'events/sitemap_other_photo_detail.html'  # Create this template
+    context_object_name = 'otherphoto'
